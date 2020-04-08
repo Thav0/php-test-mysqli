@@ -45,13 +45,13 @@ class RatesModel extends Database{
       $new_rate = $row['c_rate'] + $deviation;
 
       // Make the query.
-      $result = $this->mysqli->query("UPDATE rates SET " .
+      $this->mysqli->query("UPDATE rates SET " .
       "c_rate = " . $new_rate . ", " .
       "l_rate = " . $row['c_rate'] .
       " WHERE cid = '" . $row['cid'] . "'");
 
-      return $result;
     }
+    return true;
   }
 
 }

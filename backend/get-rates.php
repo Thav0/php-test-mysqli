@@ -1,5 +1,7 @@
 <?php
 
+header('Access-Control-Allow-Origin: *');
+
 require_once('./config/database.php');
 require_once('./src/models/RatesModel.php');
 require_once('./src/controllers/RatesController.php');
