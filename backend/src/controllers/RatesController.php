@@ -29,6 +29,14 @@ class RatesController {
 
     $getRates = $this->ratesModel->get_rates($orderBy);
     while($rate = $getRates->fetch_assoc()) {
+
+      $currentRate = $rate['c_rate'];
+      $lastRate = $rate['l_rate'];
+      $rate['variation'] = 100 - (($currentRate * 100) / $lastRate);
+
+      // die($rate['difference']);
+      $rate['variation'] = number_format($rate['variation'], 2);
+
       $data[] = $rate;
     }
     return json_encode($data);
