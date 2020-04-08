@@ -1,4 +1,6 @@
 <?php
+// This will allow external access for any kind of IP
+// This is only for development
 header('Access-Control-Allow-Origin: *');
 
 require_once('./config/database.php');
