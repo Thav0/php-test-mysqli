@@ -28,7 +28,7 @@ class RatesModel extends Database{
    *
    * @return void
    */
-  public function update_rates() {
+  public function generate_rates() {
     $rates = $this->get_rates();
 
     while($row = $rates->fetch_assoc()) {
@@ -45,10 +45,12 @@ class RatesModel extends Database{
       $new_rate = $row['c_rate'] + $deviation;
 
       // Make the query.
-      $this->mysqli->query("UPDATE rates SET " .
+      $result = $this->mysqli->query("UPDATE rates SET " .
       "c_rate = " . $new_rate . ", " .
       "l_rate = " . $row['c_rate'] .
       " WHERE cid = '" . $row['cid'] . "'");
+
+      return $result;
     }
   }
 

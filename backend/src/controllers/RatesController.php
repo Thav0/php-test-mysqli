@@ -25,7 +25,7 @@ class RatesController {
    */
   public function rates(array $params = []) {
 
-    $orderBy =  !isset($params['order_by']) && !isset($params['order']) ?: " ORDER BY " . $params['order_by'] . " " . $params['order'] . " ";
+    $orderBy =  is_null($params['order_by']) || is_null($params['order']) ? NULL : " ORDER BY " . $params['order_by'] . " " . $params['order'] . " ";
 
     $getRates = $this->ratesModel->get_rates($orderBy);
     while($rate = $getRates->fetch_assoc()) {
