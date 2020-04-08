@@ -7,7 +7,7 @@ class RatesModel extends Database{
    *
    * @return object mysqli_result
    */
-  public function get_rates() {
+  public function get_rates($orderBy = NULL) {
     $data = $this->mysqli->query("SELECT
     rates.c_rate,
     rates.l_rate,
@@ -16,6 +16,7 @@ class RatesModel extends Database{
     FROM rates
     LEFT JOIN companies
     ON companies.cid = rates.cid
+    $orderBy
     ");
 
     return $data;
